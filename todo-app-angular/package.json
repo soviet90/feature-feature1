@@ -30,6 +30,8 @@
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.3",
     "express": "^5.1.0",
+    "ngx-color": "^10.0.0",
+    "ngx-color-picker": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

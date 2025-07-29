@@ -47,19 +47,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of tableData" [class.completed]="item.completed">
+        <tr *ngFor="let item of tableData" [ngStyle]="{ 'background-color': item.color }"
+          [class.completed]="item.completed">
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
           <td>
-            {{ item.name }}
-          </td>
-          <td>
-            {{ item.description }}
-          </td>
-          <td>
+            <!-- Mark as completed -->
             <input type="checkbox" (click)="setCompleted(item.id)" [checked]="item.completed" />
+
+            <!-- Choose row color -->
+            <input type="color" [(ngModel)]="item.color" title="Pick a row color" />
           </td>
-          <td>
-            {{item.Status}}
-          </td>
+          <td>{{ item.Status }}</td>
         </tr>
       </tbody>
     </table>
