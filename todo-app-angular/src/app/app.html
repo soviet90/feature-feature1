@@ -24,11 +24,41 @@
     /* light green */
     color: #155724;
   }
+
+  .chip-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.custom-chip {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 16px;
+  padding: 4px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.custom-chip:hover {
+  background-color: #ccc;
+}
+
+.remove-icon {
+  margin-left: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
 </style>
 
 <main class="main">
   <div>
+
     <h1>Todo List</h1>
+    <button (click)="addTaskDialog()">Add Task</button>
     <table>
       <thead>
         <tr>
@@ -39,26 +69,30 @@
             Description
           </th>
           <th>
-            Actions
+            Tags
           </th>
           <th>
-            Status
+            Action
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of tableData" [class.completed]="item.completed">
+        <tr *ngFor="let item of tasks" [class.completed]="item.completed">
           <td>
-            {{ item.name }}
+            {{ item.tittle }}
           </td>
           <td>
             {{ item.description }}
           </td>
           <td>
-            <input type="checkbox" (click)="setCompleted(item.id)" [checked]="item.completed" />
+            <div class="chip-container">
+              <span *ngFor="let tag of item.tags" class="custom-chip" (click)="onTagClick(item.id)">
+                {{ tag }}
+              </span>
+            </div>
           </td>
           <td>
-            {{item.Status}}
+            <button (click)="setCompleted(item.id)">Edit tags</button>
           </td>
         </tr>
       </tbody>

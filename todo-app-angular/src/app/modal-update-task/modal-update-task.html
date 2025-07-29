@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Update Task</h2>
+
+<mat-dialog-content>
+  <form>
+
+    <!-- Task title
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Task Title</mat-label>
+      <input matInput [(ngModel)]="data.tittle" name="title" required />
+    </mat-form-field>
+
+    
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="data.description" name="description"></textarea>
+    </mat-form-field> -->
+
+    
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Add Tag</mat-label>
+      <input
+        matInput
+        [(ngModel)]="data.tags"
+        name="tagInput"
+       (keydown.enter)="onEnterPress($event)"
+        placeholder="Type and press Enter"
+      />
+    </mat-form-field>
+
+    <!-- Chip list -->
+    <mat-chip-listbox>
+      <mat-chip *ngFor="let tag of data.tags" (removed)="removeTag(tag)" removable>
+        {{ tag }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-listbox>
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="save(data.id)">Save</button>
+</mat-dialog-actions>
