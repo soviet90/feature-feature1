@@ -25,4 +25,8 @@ export class Api {
   updateTodoList(id: any, tags: any): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/${id}/tags`, tags);
   }
+
+  removeTask(id: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/${id}/isActive`, false);
+  }
 }

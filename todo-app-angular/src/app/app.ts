@@ -49,7 +49,7 @@ export class App {
         this.api.addTodoList(newTask).subscribe({
           next: (response) => {
             console.log('Task added:', response);
-            this.ngOnInit();
+           window.location.reload() // ✅ Refresh table here
           },
           error: (error) => {
             console.log('Error adding task:', error);
@@ -62,12 +62,25 @@ export class App {
 
   ngOnInit() {
     this.api.getTodoList().subscribe(data => {
-      this.tasks = data
+      // data.filter(item => item.isactive !== false).forEach(item => {
+      //   this.tasks.push({
+      //     item
+      //   })
+      // })
+      this.tasks = data.filter(item => item.isactive !== false);
+      console.log('Fetched tasks:', data);
       console.log('Tasks fetched:', this.tasks);
     })
   }
 
-
+deleteTask(id: any): void {
+  console.log('Deleting task with ID:', id);
+  this.api.removeTask(id).subscribe({
+    next: (response) => {
+      console.log('Task deleted:', response);
+      this.ngOnInit(); // Refresh the task list after deletion
+    }})
+}
 
   setCompleted(id: number): void {
     this.api.getTodoListById(id).subscribe(item => {

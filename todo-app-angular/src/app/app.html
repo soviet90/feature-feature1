@@ -58,7 +58,7 @@
   <div>
 
     <h1>Todo List</h1>
-    <button (click)="addTaskDialog()">Add Task</button>
+   
     <table>
       <thead>
         <tr>
@@ -93,10 +93,12 @@
           </td>
           <td>
             <button (click)="setCompleted(item.id)">Edit tags</button>
+             <button (click)="deleteTask(item.id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
+     <button (click)="addTaskDialog()">Add Task</button>
   </div>
 </main>
 

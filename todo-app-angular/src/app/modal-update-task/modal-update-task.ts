@@ -29,7 +29,6 @@ export class ModalUpdateTask {
   constructor(public dialogRef: MatDialogRef<ModalUpdateTask>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private api: Api
-
   ) { }
 
   task = {
@@ -37,10 +36,7 @@ export class ModalUpdateTask {
     description: '',
     tags: [] as string[]
   };
-
   newTag = '';
-
-
 
   addTag(event: KeyboardEvent): void {
     console.log('Adding tag:', this.data.tags);
@@ -62,8 +58,7 @@ export class ModalUpdateTask {
   }
 
   save(id: any): void {
-    // console.log('Saved task:', this.task);
-    // this.dialogRef.close(this.task);
+
     console.log('Updating task with ID:', id, 'and data:', this.data.tags);
     this.api.updateTodoList(this.data.id, this.data.tags).subscribe({
       next: (response) => {
